@@ -7,5 +7,4 @@ public class PlayerGlobalsManager : Singleton<PlayerGlobalsManager>
 
     public GameObject PLAYER_GAME_OBJECT;
     public Rigidbody2D PLAYER_RIGIDBODY;
-    
 }
