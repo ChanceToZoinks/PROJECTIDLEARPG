@@ -9,6 +9,9 @@ public class Attack : Command
     {
         //Nothing will happen if we press this key
         AttackTarget();
+
+        //Save the command
+        InputHandler.oldCommands.Add(command);
     }
 
     //attacks the target from a list using the index passed to it

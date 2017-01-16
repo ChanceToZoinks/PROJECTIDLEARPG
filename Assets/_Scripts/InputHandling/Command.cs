@@ -14,6 +14,9 @@ namespace CommandPattern
         //Move
         public virtual void Move(Rigidbody2D playerRigid) { }
 
+        //Jump
+        public virtual void PlayerJump(Rigidbody2D playerRigid) { }
+
         //attack
         public virtual void AttackTarget() { }
     }
