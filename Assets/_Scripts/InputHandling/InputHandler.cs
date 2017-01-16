@@ -12,11 +12,8 @@ namespace CommandPattern
         {
             MoveLeft, MoveRight, Jump, Attack
         };
-        //string for inspector and eventually player GUI hotkey changing
-        public Key _buttonLeft;
-        public Key _buttonRight;
-        public Key _buttonA;
-        public Key _buttonSpace;   
+        //key to get name as string for inspector and eventually player GUI hotkey changing
+        public Key _buttonLeft, _buttonRight, _buttonA, _buttonSpace;
         //commands
         private Command buttonLeft, buttonRight, buttonA, buttonSpace;
         //stores commands for replay later (add cool time travel or something)
@@ -24,17 +21,20 @@ namespace CommandPattern
 
         void Start()
         {
-            //Bind keys with commands
-            //buttonLeft = new MoveLeft();
-            //buttonRight = new MoveRight();
-            //buttonA = new Attack();
-            //buttonSpace = new Jump();
+            AllKeySetup();
+        }
 
-            //here i first let the user pick the type to create an instance of through the use of an enum then convert the string name of the enum to an instance of and object of type command
-            buttonLeft = System.Activator.CreateInstance(System.Type.GetType(System.Enum.GetName(typeof(Key), _buttonLeft))) as Command;
-            buttonRight = System.Activator.CreateInstance(System.Type.GetType(System.Enum.GetName(typeof(Key), _buttonRight))) as Command;
-            buttonA = System.Activator.CreateInstance(System.Type.GetType(System.Enum.GetName(typeof(Key), _buttonA))) as Command;
-            buttonSpace = System.Activator.CreateInstance(System.Type.GetType(System.Enum.GetName(typeof(Key), _buttonSpace))) as Command;
+        public void AllKeySetup()
+        {
+            buttonLeft = CreateCommandInstanceFromEnum(_buttonLeft);
+            buttonRight = CreateCommandInstanceFromEnum(_buttonRight);
+            buttonA = CreateCommandInstanceFromEnum(_buttonA);
+            buttonSpace = CreateCommandInstanceFromEnum(_buttonSpace);
+        }
+
+        private Command CreateCommandInstanceFromEnum(Key _keyName)
+        {
+            return System.Activator.CreateInstance(System.Type.GetType(System.Enum.GetName(typeof(Key), _keyName))) as Command;
         }
 
         void Update()
