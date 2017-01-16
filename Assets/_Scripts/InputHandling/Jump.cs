@@ -16,6 +16,9 @@ public class Jump : Command
 
     public override void PlayerJump(Rigidbody2D playerRigid)
     {
-        playerRigid.velocity += PlayerGlobalsManager.Instance.PLAYER_JUMP_HEIGHT;
+        if (PlayerGlobalsManager.Instance.IS_GROUNDED)
+        {
+            playerRigid.AddForce(PlayerGlobalsManager.Instance.PLAYER_JUMP_FORCE);
+        }
     }
 }

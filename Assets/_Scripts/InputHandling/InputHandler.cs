@@ -11,10 +11,10 @@ namespace CommandPattern
         public enum Key
         {
             MoveLeft, MoveRight, Jump, Attack
-        };
+        }
         //key to get name as string for inspector and eventually player GUI hotkey changing
         public Key _buttonLeft, _buttonRight, _buttonA, _buttonSpace;
-        //commands
+        //possible commands
         private Command buttonLeft, buttonRight, buttonA, buttonSpace;
         //stores commands for replay later (add cool time travel or something)
         public static List<Command> oldCommands = new List<Command>();        
@@ -24,6 +24,7 @@ namespace CommandPattern
             AllKeySetup();
         }
 
+        //this method just constructs all the keys. use this to "save" player hotkey changes through a GUI
         public void AllKeySetup()
         {
             buttonLeft = CreateCommandInstanceFromEnum(_buttonLeft);
@@ -32,18 +33,28 @@ namespace CommandPattern
             buttonSpace = CreateCommandInstanceFromEnum(_buttonSpace);
         }
 
+        //this method returns an object of type command given the name of a Key
+        //this method functions by extracting the name of the passed key as a string and using Activator.CreateInstance and System.Type.GetType to instantiate
         private Command CreateCommandInstanceFromEnum(Key _keyName)
         {
             return System.Activator.CreateInstance(System.Type.GetType(System.Enum.GetName(typeof(Key), _keyName))) as Command;
         }
 
+        void FixedUpdate()
+        {
+            //checks in a small circle around the players feets to see if the player is on the ground and sets the appropriate flags -- used for jumping logic
+            PlayerGlobalsManager.Instance.IS_GROUNDED = Physics2D.OverlapCircle(PlayerGlobalsManager.Instance.GROUND_CHECK.position, PlayerGlobalsManager.Instance.GROUND_RADIUS, PlayerGlobalsManager.Instance.GROUND_LAYER);
+            
+            HandleMovement();
+        }
+
         void Update()
         {
-            HandleInput();
+            HandleJumping();
         }
 
         //Check if we press a key, if so do what the key is binded to 
-        public void HandleInput()
+        private void HandleMovement()
         {
             if (Input.GetKey(KeyCode.A))
             {
@@ -56,11 +67,16 @@ namespace CommandPattern
             else if (Input.GetKey(KeyCode.RightArrow))
             {
                 buttonRight.Execute(PlayerGlobalsManager.Instance.PLAYER_RIGIDBODY, buttonRight);
-            }
+            }     
+        }
+
+        //check if the jump key is pressed
+        public void HandleJumping()
+        {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 buttonSpace.Execute(PlayerGlobalsManager.Instance.PLAYER_RIGIDBODY, buttonSpace);
-            }          
+            }
         }
     }
 }

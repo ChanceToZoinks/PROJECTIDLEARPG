@@ -17,6 +17,13 @@ public class MoveRight : Command
     //Move the box
     public override void Move(Rigidbody2D playerRigid)
     {
-        playerRigid.velocity = PlayerGlobalsManager.Instance.PLAYER_VELOCITY;
+        if (PlayerGlobalsManager.Instance.IS_GROUNDED)
+        {
+            playerRigid.velocity = PlayerGlobalsManager.Instance.PLAYER_VELOCITY;
+        }
+        else
+        {
+            playerRigid.AddForce(PlayerGlobalsManager.Instance.PLAYER_VELOCITY);
+        }
     }
 }
