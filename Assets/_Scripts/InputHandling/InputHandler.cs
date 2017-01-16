@@ -9,8 +9,7 @@ namespace CommandPattern
         //keys we need, find better way to do this later and add more
         private Command buttonLeft, buttonRight, buttonA;
         //stores commands for replay later (add cool time travel or something)
-        public static List<Command> oldCommands = new List<Command>();
-
+        public static List<Command> oldCommands = new List<Command>();        
 
         void Start()
         {
