@@ -27,15 +27,15 @@ namespace CommandPattern
         //this method just constructs all the keys. use this to "save" player hotkey changes through a GUI
         public void AllKeySetup()
         {
-            buttonLeft = CreateCommandInstanceFromEnum(_buttonLeft);
-            buttonRight = CreateCommandInstanceFromEnum(_buttonRight);
-            buttonA = CreateCommandInstanceFromEnum(_buttonA);
-            buttonSpace = CreateCommandInstanceFromEnum(_buttonSpace);
+            buttonLeft = CreateCommandInstanceFromEnumName(_buttonLeft);
+            buttonRight = CreateCommandInstanceFromEnumName(_buttonRight);
+            buttonA = CreateCommandInstanceFromEnumName(_buttonA);
+            buttonSpace = CreateCommandInstanceFromEnumName(_buttonSpace);
         }
 
         //this method returns an object of type command given the name of a Key
         //this method functions by extracting the name of the passed key as a string and using Activator.CreateInstance and System.Type.GetType to instantiate
-        private Command CreateCommandInstanceFromEnum(Key _keyName)
+        private Command CreateCommandInstanceFromEnumName(Key _keyName)
         {
             return System.Activator.CreateInstance(System.Type.GetType(System.Enum.GetName(typeof(Key), _keyName))) as Command;
         }
