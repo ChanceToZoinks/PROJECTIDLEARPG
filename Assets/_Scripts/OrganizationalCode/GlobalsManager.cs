@@ -12,7 +12,7 @@ public class GlobalsManager : Singleton<GlobalsManager>
     public Transform PLAYER_TRANSFORM;
     public Rigidbody2D PLAYER_RIGIDBODY;
     public Vector2 PLAYER_VELOCITY;
-    public bool PLAYER_FACING_RIGHT; // false is left
+    public bool PLAYER_FACING_RIGHT = true; // false is left, right is default
     //stuff for jumping
     public Vector2 PLAYER_JUMP_FORCE;
     public bool IS_GROUNDED;
@@ -23,4 +23,6 @@ public class GlobalsManager : Singleton<GlobalsManager>
     //stuff for camera
     public Camera CURRENT_CAMERA;
     public Transform CURRENT_CAMERA_TRANSFORM;
+    public Transform CAMERA_MAIN_FOLLOW_ACTOR;
+    public float CAMERA_PAN_SPEED;
 }

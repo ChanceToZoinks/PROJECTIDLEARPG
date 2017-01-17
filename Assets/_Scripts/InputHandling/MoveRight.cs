@@ -7,7 +7,7 @@ public class MoveRight : Command
     //Called when we press a key
     public override void Execute(Rigidbody2D playerRigid, Command command)
     {
-        //Move the box
+        //Move the character
         Move(playerRigid);
         FlipCharacter(GlobalsManager.Instance.PLAYER_TRANSFORM);
 
@@ -15,7 +15,7 @@ public class MoveRight : Command
         InputHandler.oldCommands.Add(command);
     }
 
-    //Move the box
+    //Move the character
     public override void Move(Rigidbody2D playerRigid)
     {
         if (GlobalsManager.Instance.IS_GROUNDED)
@@ -32,7 +32,10 @@ public class MoveRight : Command
     {
         if (!GlobalsManager.Instance.PLAYER_FACING_RIGHT)
         {
-            playerTransform.localScale = new Vector3(playerTransform.localScale.x * -1, playerTransform.localScale.y, playerTransform.localScale.z);
+            if (playerTransform.localScale.x < 0)
+            {
+                playerTransform.localScale = new Vector3(playerTransform.localScale.x * -1, playerTransform.localScale.y, playerTransform.localScale.z);     
+            }
             GlobalsManager.Instance.PLAYER_FACING_RIGHT = !GlobalsManager.Instance.PLAYER_FACING_RIGHT;
         }     
     }
