@@ -9,6 +9,7 @@ public class MoveRight : Command
     {
         //Move the box
         Move(playerRigid);
+        FlipCharacter(GlobalsManager.Instance.PLAYER_TRANSFORM);
 
         //Save the command
         InputHandler.oldCommands.Add(command);
@@ -17,13 +18,22 @@ public class MoveRight : Command
     //Move the box
     public override void Move(Rigidbody2D playerRigid)
     {
-        if (PlayerGlobalsManager.Instance.IS_GROUNDED)
+        if (GlobalsManager.Instance.IS_GROUNDED)
         {
-            playerRigid.velocity = PlayerGlobalsManager.Instance.PLAYER_VELOCITY;
+            playerRigid.velocity = GlobalsManager.Instance.PLAYER_VELOCITY;
         }
         else
         {
-            playerRigid.AddForce(PlayerGlobalsManager.Instance.PLAYER_VELOCITY);
+            playerRigid.AddForce(GlobalsManager.Instance.PLAYER_VELOCITY);
         }
+    }
+
+    public override void FlipCharacter(Transform playerTransform)
+    {
+        if (!GlobalsManager.Instance.PLAYER_FACING_RIGHT)
+        {
+            playerTransform.localScale = new Vector3(playerTransform.localScale.x * -1, playerTransform.localScale.y, playerTransform.localScale.z);
+            GlobalsManager.Instance.PLAYER_FACING_RIGHT = !GlobalsManager.Instance.PLAYER_FACING_RIGHT;
+        }     
     }
 }
