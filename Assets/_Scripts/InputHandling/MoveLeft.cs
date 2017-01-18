@@ -4,8 +4,6 @@ using CommandPattern;
 
 public class MoveLeft : Command
 {
-    //Flip command must be tied to move left/right
-    Command flip;
     //Called when we press a key
     public override void Execute(Rigidbody2D playerRigid, Command command)
     {
@@ -21,14 +19,8 @@ public class MoveLeft : Command
     //Move the character
     public override void Move(Rigidbody2D playerRigid)
     {
-        if (GlobalsManager.Instance.IS_GROUNDED)
-        {
-            playerRigid.velocity = -GlobalsManager.Instance.PLAYER_VELOCITY;
-        }
-        else
-        {
-            playerRigid.AddForce(-GlobalsManager.Instance.PLAYER_VELOCITY);          
-        }
+        playerRigid.AddForce(-GlobalsManager.Instance.PLAYER_VELOCITY, ForceMode2D.Force);
+        playerRigid.velocity = Vector2.ClampMagnitude(playerRigid.velocity, GlobalsManager.Instance.PLAYER_MAX_HORIZONTAL_SPEED);
     }
 
     public override void FlipCharacter(Transform playerTransform)

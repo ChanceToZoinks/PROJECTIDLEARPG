@@ -9,6 +9,7 @@ public class MoveRight : Command
     {
         //Move the character
         Move(playerRigid);
+        //flip the character
         FlipCharacter(GlobalsManager.Instance.PLAYER_TRANSFORM);
 
         //Save the command
@@ -18,14 +19,8 @@ public class MoveRight : Command
     //Move the character
     public override void Move(Rigidbody2D playerRigid)
     {
-        if (GlobalsManager.Instance.IS_GROUNDED)
-        {
-            playerRigid.velocity = GlobalsManager.Instance.PLAYER_VELOCITY;
-        }
-        else
-        {
-            playerRigid.AddForce(GlobalsManager.Instance.PLAYER_VELOCITY);
-        }
+        playerRigid.AddForce(GlobalsManager.Instance.PLAYER_VELOCITY, ForceMode2D.Force);
+        playerRigid.velocity = Vector2.ClampMagnitude(playerRigid.velocity, GlobalsManager.Instance.PLAYER_MAX_HORIZONTAL_SPEED);
     }
 
     public override void FlipCharacter(Transform playerTransform)
