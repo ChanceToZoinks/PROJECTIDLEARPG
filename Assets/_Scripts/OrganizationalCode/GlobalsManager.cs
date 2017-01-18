@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class GlobalsManager : Singleton<GlobalsManager>
 {
@@ -14,6 +14,8 @@ public class GlobalsManager : Singleton<GlobalsManager>
     public Vector2 PLAYER_VELOCITY;
     public float PLAYER_MAX_HORIZONTAL_SPEED;
     public bool PLAYER_FACING_RIGHT = true; // false is left, right is default
+    public Material PLAYER_MATERIAL;
+    public LayerMask PLAYER_LAYER;
     //stuff for jumping
     public Vector2 PLAYER_JUMP_FORCE;
     public bool IS_GROUNDED;
@@ -26,4 +28,13 @@ public class GlobalsManager : Singleton<GlobalsManager>
     public Transform CURRENT_CAMERA_TRANSFORM;
     public Transform CAMERA_MAIN_FOLLOW_ACTOR;
     public float CAMERA_PAN_SPEED;
+    public float CAMERA_SPEEDUP_DISTANCE;
+    public float CAMERA_SPEEDUP_VALUE;
+    public float CAMERA_Y_OFFSET;
+    //stuff for level
+    //public Material FLOOR_TILE_MATERIAL;
+    public float FLOOR_COLOR_SWITCH_TIME;
+    public float FLOOR_SWITCH_RANDOMNESS;
+    public bool GROUND_COLOR_RANDOMNESS;
+    public Color[] FLOOR_COLOR_ARRAY;
 }
