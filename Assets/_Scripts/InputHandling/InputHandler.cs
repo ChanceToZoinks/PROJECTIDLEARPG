@@ -6,6 +6,9 @@ namespace CommandPattern
 {
     public class InputHandler : MonoBehaviour
     {
+        //this class handles input. for now it just recieves move/jump/attack hotkeys that can be customized
+        //when it sees input calls are made to the corresponding logic class to handle what is supposed to happen.
+         
         //keys we need, find better way to do this later and add more
         //MUST MAINTAIN THE ENUM AND THE INDIVIDUAL KEYS
         public enum Key
@@ -43,7 +46,7 @@ namespace CommandPattern
         void FixedUpdate()
         {
             //checks in a small circle around the players feets to see if the player is on the ground and sets the appropriate flags -- used for jumping logic
-            PlayerGlobalsManager.Instance.IS_GROUNDED = Physics2D.OverlapCircle(PlayerGlobalsManager.Instance.GROUND_CHECK.position, PlayerGlobalsManager.Instance.GROUND_RADIUS, PlayerGlobalsManager.Instance.GROUND_LAYER);
+            GlobalsManager.Instance.IS_GROUNDED = Physics2D.OverlapCircle(GlobalsManager.Instance.GROUND_CHECK.position, GlobalsManager.Instance.GROUND_RADIUS, GlobalsManager.Instance.GROUND_LAYER);
             
             HandleMovement();
         }
@@ -58,15 +61,15 @@ namespace CommandPattern
         {
             if (Input.GetKey(KeyCode.A))
             {
-                buttonA.Execute(PlayerGlobalsManager.Instance.PLAYER_RIGIDBODY, buttonA);
+                buttonA.Execute(GlobalsManager.Instance.PLAYER_RIGIDBODY, buttonA);
             }
             else if (Input.GetKey(KeyCode.LeftArrow))
             {
-                buttonLeft.Execute(PlayerGlobalsManager.Instance.PLAYER_RIGIDBODY, buttonLeft);
+                buttonLeft.Execute(GlobalsManager.Instance.PLAYER_RIGIDBODY, buttonLeft);
             }
             else if (Input.GetKey(KeyCode.RightArrow))
             {
-                buttonRight.Execute(PlayerGlobalsManager.Instance.PLAYER_RIGIDBODY, buttonRight);
+                buttonRight.Execute(GlobalsManager.Instance.PLAYER_RIGIDBODY, buttonRight);
             }     
         }
 
@@ -75,7 +78,7 @@ namespace CommandPattern
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                buttonSpace.Execute(PlayerGlobalsManager.Instance.PLAYER_RIGIDBODY, buttonSpace);
+                buttonSpace.Execute(GlobalsManager.Instance.PLAYER_RIGIDBODY, buttonSpace);
             }
         }
     }
