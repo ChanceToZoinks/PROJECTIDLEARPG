@@ -30,6 +30,7 @@ public class GlobalsManager : Singleton<GlobalsManager>
     public float CAMERA_PAN_SPEED;
     public float CAMERA_SPEEDUP_DISTANCE;
     public float CAMERA_Y_OFFSET;
+    public float CAMERA_FOV_JUMP_CHANGE;
     //stuff for level
     //public Material FLOOR_TILE_MATERIAL;
     public float FLOOR_COLOR_SWITCH_TIME;
