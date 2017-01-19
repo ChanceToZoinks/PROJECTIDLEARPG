@@ -10,7 +10,7 @@ public class GlobalsManager : Singleton<GlobalsManager>
 
     public GameObject PLAYER_GAME_OBJECT;
     public Transform PLAYER_TRANSFORM;
-    public Rigidbody2D PLAYER_RIGIDBODY;
+    public Rigidbody PLAYER_RIGIDBODY;
     public Vector2 PLAYER_VELOCITY;
     public float PLAYER_MAX_HORIZONTAL_SPEED;
     public bool PLAYER_FACING_RIGHT = true; // false is left, right is default

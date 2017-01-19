@@ -17,4 +17,35 @@ public class Toolkit : Singleton<Toolkit> {
         float randomSinValue = Mathf.Sin(Random.Range(0.0f, Mathf.PI * 2.0f));
         return randomSinValue;
     }
+
+    public void AddForceAsFunctionOfVelocity(Rigidbody playerRigidbody)
+    {
+        //the goal is to clamp the force added so it linearly drops based on current velocity. IE at max speed the addforce is adding 0 force
+        float currentSpeed = Mathf.Abs(playerRigidbody.velocity.x);
+        //get current speed as percentage of max
+        float adjustedPercentSpeed = (1 - (currentSpeed / GlobalsManager.Instance.PLAYER_MAX_HORIZONTAL_SPEED));
+        //compare the speed to max and if it's over adjust it the opposite direction based on the difference between max speed and current speed
+        if (currentSpeed >= GlobalsManager.Instance.PLAYER_MAX_HORIZONTAL_SPEED)
+        {
+            if (GlobalsManager.Instance.PLAYER_FACING_RIGHT)
+            {
+                playerRigidbody.AddForce(GlobalsManager.Instance.PLAYER_VELOCITY * adjustedPercentSpeed * -1, ForceMode.Force);
+            }
+            else
+            {
+                playerRigidbody.AddForce(GlobalsManager.Instance.PLAYER_VELOCITY * adjustedPercentSpeed, ForceMode.Force);
+            }
+        }
+        else
+        {
+            if (GlobalsManager.Instance.PLAYER_FACING_RIGHT)
+            {
+                playerRigidbody.AddForce(GlobalsManager.Instance.PLAYER_VELOCITY, ForceMode.Force);
+            }
+            else
+            {
+                playerRigidbody.AddForce(GlobalsManager.Instance.PLAYER_VELOCITY * -1, ForceMode.Force);
+            }
+        }
+    }
 }

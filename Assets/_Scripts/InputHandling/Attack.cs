@@ -5,7 +5,7 @@ using CommandPattern;
 public class Attack : Command
 {
     //Called when we press a key
-    public override void Execute(Rigidbody2D playerRigid, Command command)
+    public override void Execute(Rigidbody playerRigid, Command command)
     {
         //Nothing will happen if we press this key
         AttackTarget();
