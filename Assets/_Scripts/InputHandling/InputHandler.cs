@@ -46,7 +46,7 @@ namespace CommandPattern
         void FixedUpdate()
         {
             //checks in a small circle around the players feets to see if the player is on the ground and sets the appropriate flags -- used for jumping logic
-            GlobalsManager.Instance.IS_GROUNDED = Physics.OverlapSphere(GlobalsManager.Instance.GROUND_CHECK.position, GlobalsManager.Instance.GROUND_RADIUS, GlobalsManager.Instance.GROUND_LAYER).Length > 0;
+            GlobalsManager.Instance.IS_GROUNDED = Physics2D.OverlapCircle(GlobalsManager.Instance.GROUND_CHECK.position, GlobalsManager.Instance.GROUND_RADIUS, GlobalsManager.Instance.GROUND_LAYER);
             
             HandleMovement();
         }

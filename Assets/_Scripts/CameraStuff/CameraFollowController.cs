@@ -6,12 +6,6 @@ public class CameraFollowController : MonoBehaviour
     //this class lerps between current camera position and the follow point position
     //the point is intentionally offset a few units in front of the character.
     //this creates an effect where the player sees further ahead of themselves when standing still and a roughly equal distance on either side when moving
-
-    void Start()
-    {
-        GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position = new Vector3(GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position.x, GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position.y + GlobalsManager.Instance.CAMERA_Y_OFFSET, GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position.z);
-    }
-
     void Update()
     {
         //this will eventually become code to give the player more precise control over the camera panning. so when they get closer to the edge of the screen the camera moves faster to keep

@@ -5,25 +5,22 @@ using CommandPattern;
 public class MoveLeft : Command
 {
     //Called when we press a key
-    public override void Execute(Rigidbody playerRigid, Command command)
+    public override void Execute(Rigidbody2D playerRigid, Command command)
     {
         //Move the character
         Move(playerRigid);
+        //flip the character
+        FlipCharacter(GlobalsManager.Instance.PLAYER_TRANSFORM);
 
         //Save the command
         InputHandler.oldCommands.Add(command);
     }
 
     //Move the character
-    public override void Move(Rigidbody playerRigid)
+    public override void Move(Rigidbody2D playerRigid)
     {
-        //flip the character
-        FlipCharacter(GlobalsManager.Instance.PLAYER_TRANSFORM);
-
-        if (GlobalsManager.Instance.IS_GROUNDED)
-        {
-            Toolkit.Instance.AddForceAsFunctionOfVelocity(GlobalsManager.Instance.PLAYER_RIGIDBODY);
-        }
+        playerRigid.AddForce(-GlobalsManager.Instance.PLAYER_VELOCITY, ForceMode2D.Force);
+        playerRigid.velocity = Vector2.ClampMagnitude(playerRigid.velocity, GlobalsManager.Instance.PLAYER_MAX_HORIZONTAL_SPEED);
     }
 
     public override void FlipCharacter(Transform playerTransform)
