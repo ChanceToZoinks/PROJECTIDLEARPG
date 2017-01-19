@@ -20,8 +20,6 @@ public class MoveLeft : Command
     public override void Move(Rigidbody2D playerRigid)
     {
         Toolkit.Instance.AddForceAsFunctionOfVelocity(playerRigid);
-        //playerRigid.AddForce(-GlobalsManager.Instance.PLAYER_VELOCITY, ForceMode2D.Force);
-        //playerRigid.velocity = Vector2.ClampMagnitude(playerRigid.velocity, GlobalsManager.Instance.PLAYER_MAX_HORIZONTAL_SPEED);
     }
 
     public override void FlipCharacter(Transform playerTransform)
