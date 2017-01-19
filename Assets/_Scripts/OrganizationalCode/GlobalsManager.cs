@@ -29,7 +29,6 @@ public class GlobalsManager : Singleton<GlobalsManager>
     public Transform CAMERA_MAIN_FOLLOW_ACTOR;
     public float CAMERA_PAN_SPEED;
     public float CAMERA_SPEEDUP_DISTANCE;
-    public float CAMERA_SPEEDUP_VALUE;
     public float CAMERA_Y_OFFSET;
     //stuff for level
     //public Material FLOOR_TILE_MATERIAL;

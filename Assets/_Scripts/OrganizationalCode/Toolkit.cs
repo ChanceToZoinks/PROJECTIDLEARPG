@@ -25,7 +25,7 @@ public class Toolkit : Singleton<Toolkit> {
         //get current speed as percentage of max
         float adjustedPercentSpeed = (1 - (currentSpeed / GlobalsManager.Instance.PLAYER_MAX_HORIZONTAL_SPEED));
         //compare the speed to max and if it's over adjust it the opposite direction based on the difference between max speed and current speed
-        if (currentSpeed >= GlobalsManager.Instance.PLAYER_MAX_HORIZONTAL_SPEED)
+        if (currentSpeed > GlobalsManager.Instance.PLAYER_MAX_HORIZONTAL_SPEED)
         {
             if (GlobalsManager.Instance.PLAYER_FACING_RIGHT)
             {

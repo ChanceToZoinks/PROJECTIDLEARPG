@@ -6,35 +6,46 @@ public class CameraFollowController : MonoBehaviour
     //this class lerps between current camera position and the follow point position
     //the point is intentionally offset a few units in front of the character.
     //this creates an effect where the player sees further ahead of themselves when standing still and a roughly equal distance on either side when moving
+
+    float startingCameraPanSpeed;
+
+    float lerpPathLength;
+    float distCoveredInTimeStep;
+    float totalLerpPath;
+    float newXPosition;
+    float newYPosition;
+
+    void Start()
+    {
+        startingCameraPanSpeed = GlobalsManager.Instance.CAMERA_PAN_SPEED;
+    }
+
+    //now adding a bounding box that when the player is inside the camera very slowly drifts to frontward viewing but if the player gets too far ahead the camera moves to him based on the players velocity
     void Update()
     {
-        //this will eventually become code to give the player more precise control over the camera panning. so when they get closer to the edge of the screen the camera moves faster to keep
-        //the forward direction in view.
-        //if (Vector3.Distance(GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position, GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position) < GlobalsManager.Instance.CAMERA_SPEEDUP_DISTANCE)
-        //{
-        //    float lerpPathLength = Vector3.Distance(GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position, GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position);
-        //    float distCoveredInTimeStep = Time.deltaTime * GlobalsManager.Instance.CAMERA_PAN_SPEED;
-        //    float totalLerpPath = distCoveredInTimeStep / lerpPathLength;
+        if (GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position.x >= GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position.x + GlobalsManager.Instance.CAMERA_SPEEDUP_DISTANCE && GlobalsManager.Instance.PLAYER_RIGIDBODY.velocity.magnitude > 0)
+        {
+            //increase camera speed if the player is too far away
+            GlobalsManager.Instance.CAMERA_PAN_SPEED++;
 
-        //    float newXPosition = Mathf.Lerp(GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position.x, GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position.x, totalLerpPath);
-        //    GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position = new Vector3(newXPosition, GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position.y, GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position.z);
-        //}
-        //else
-        //{
-        //    float lerpPathLength = Vector3.Distance(GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position, GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position);
-        //    float distCoveredInTimeStep = Time.deltaTime * GlobalsManager.Instance.CAMERA_PAN_SPEED * GlobalsManager.Instance.CAMERA_SPEEDUP_VALUE;
-        //    float totalLerpPath = distCoveredInTimeStep / lerpPathLength;
+            lerpPathLength = Vector3.Distance(GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position, GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position);
+            distCoveredInTimeStep = Time.deltaTime * GlobalsManager.Instance.CAMERA_PAN_SPEED;
+            totalLerpPath = distCoveredInTimeStep / lerpPathLength;
+            newXPosition = Mathf.Lerp(GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position.x, GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position.x, totalLerpPath);
+            newYPosition = Mathf.Lerp(GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position.y, GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position.y + GlobalsManager.Instance.CAMERA_Y_OFFSET, totalLerpPath);
+            GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position = new Vector3(newXPosition, newYPosition, GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position.z);
+        }
+        else
+        {
+            //once player is back inside the box reset camera speed to original speed
+            GlobalsManager.Instance.CAMERA_PAN_SPEED = startingCameraPanSpeed;
 
-        //    float newXPosition = Mathf.Lerp(GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position.x, GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position.x, totalLerpPath);
-        //    GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position = new Vector3(newXPosition, GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position.y, GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position.z);
-        //}
-
-        float lerpPathLength = Vector3.Distance(GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position, GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position);
-        float distCoveredInTimeStep = Time.deltaTime * GlobalsManager.Instance.CAMERA_PAN_SPEED;
-        float totalLerpPath = distCoveredInTimeStep / lerpPathLength;
-
-        float newXPosition = Mathf.Lerp(GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position.x, GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position.x, totalLerpPath);
-        float newYPosition = Mathf.Lerp(GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position.y, GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position.y + GlobalsManager.Instance.CAMERA_Y_OFFSET, totalLerpPath);
-        GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position = new Vector3(newXPosition, newYPosition, GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position.z);
+            lerpPathLength = Vector3.Distance(GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position, GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position);
+            distCoveredInTimeStep = Time.deltaTime * GlobalsManager.Instance.CAMERA_PAN_SPEED;
+            totalLerpPath = distCoveredInTimeStep / lerpPathLength;
+            newXPosition = Mathf.Lerp(GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position.x, GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position.x, totalLerpPath);
+            newYPosition = Mathf.Lerp(GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position.y, GlobalsManager.Instance.CAMERA_MAIN_FOLLOW_ACTOR.position.y + GlobalsManager.Instance.CAMERA_Y_OFFSET, totalLerpPath);
+            GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position = new Vector3(newXPosition, newYPosition, GlobalsManager.Instance.CURRENT_CAMERA_TRANSFORM.position.z);
+        }
     }	
 }
