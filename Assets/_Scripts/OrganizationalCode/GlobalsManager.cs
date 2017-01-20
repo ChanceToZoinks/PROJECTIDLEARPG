@@ -37,4 +37,6 @@ public class GlobalsManager : Singleton<GlobalsManager>
     public float FLOOR_SWITCH_RANDOMNESS;
     public bool GROUND_COLOR_RANDOMNESS;
     public Color[] FLOOR_COLOR_ARRAY;
+    //background stuff
+    public float SPIN_AMOUNT_PER_STEP;
 }

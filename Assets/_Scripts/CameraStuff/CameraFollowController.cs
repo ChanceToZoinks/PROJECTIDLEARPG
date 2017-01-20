@@ -27,7 +27,7 @@ public class CameraFollowController : MonoBehaviour
     {
         if (!GlobalsManager.Instance.IS_GROUNDED)
         {
-            GlobalsManager.Instance.CURRENT_CAMERA.fieldOfView = Mathf.Lerp(GlobalsManager.Instance.CURRENT_CAMERA.fieldOfView, GlobalsManager.Instance.CURRENT_CAMERA.fieldOfView + GlobalsManager.Instance.CAMERA_FOV_JUMP_CHANGE, GlobalsManager.Instance.CAMERA_FOV_JUMP_CHANGE / 8.0f * Time.deltaTime);
+            GlobalsManager.Instance.CURRENT_CAMERA.fieldOfView = Mathf.Lerp(GlobalsManager.Instance.CURRENT_CAMERA.fieldOfView, GlobalsManager.Instance.CURRENT_CAMERA.fieldOfView + GlobalsManager.Instance.CAMERA_FOV_JUMP_CHANGE, GlobalsManager.Instance.CAMERA_FOV_JUMP_CHANGE / 10.0f * Time.deltaTime);
         }
         else
         {
