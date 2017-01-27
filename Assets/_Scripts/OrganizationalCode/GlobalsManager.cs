@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using LevelEditor;
 
 public class GlobalsManager : Singleton<GlobalsManager>
 {
@@ -33,6 +34,7 @@ public class GlobalsManager : Singleton<GlobalsManager>
     public float CAMERA_FOV_JUMP_CHANGE;
     public bool CAMERA_HARD_MODE = false;
     //stuff for level
+    public List<ScriptedObject> TELEPORTERS;
     //public Material FLOOR_TILE_MATERIAL;
     public float FLOOR_COLOR_SWITCH_TIME;
     public float FLOOR_SWITCH_RANDOMNESS;
