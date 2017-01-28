@@ -50,7 +50,7 @@ namespace LevelEditor.Editors
                 case ScriptedObject.TriggerType.FloatyAir:
                     EditorGUILayout.PropertyField(controllable_Prop, new GUIContent("On?"));
 
-                    EditorGUILayout.IntSlider(valForFloatyAir_Prop, 1000, 8000, new GUIContent("Strength"));
+                    EditorGUILayout.IntSlider(valForFloatyAir_Prop, 100, 800, new GUIContent("Strength"));
                     break;
 
             }
