@@ -13,12 +13,12 @@ namespace CommandPattern
         //MUST MAINTAIN THE ENUM AND THE INDIVIDUAL KEYS
         public enum Key
         {
-            MoveLeft, MoveRight, Jump, Attack
+            MoveLeft, MoveRight, Jump, Attack, OpenMenu
         }
         //key to get name as string for inspector and eventually player GUI hotkey changing
-        public Key _buttonLeft, _buttonRight, _buttonA, _buttonSpace;
+        public Key _buttonLeft, _buttonRight, _buttonA, _buttonSpace, _buttonEscape;
         //possible commands
-        private Command buttonLeft, buttonRight, buttonA, buttonSpace;
+        private Command buttonLeft, buttonRight, buttonA, buttonSpace, buttonEscape;
         //stores commands for replay later (add cool time travel or something)
         public static List<Command> oldCommands = new List<Command>();        
 
@@ -34,6 +34,7 @@ namespace CommandPattern
             buttonRight = CreateCommandInstanceFromEnumName(_buttonRight);
             buttonA = CreateCommandInstanceFromEnumName(_buttonA);
             buttonSpace = CreateCommandInstanceFromEnumName(_buttonSpace);
+            buttonEscape = CreateCommandInstanceFromEnumName(_buttonEscape);
         }
 
         //this method returns an object of type command given the name of a Key
@@ -70,6 +71,10 @@ namespace CommandPattern
             else if (Input.GetKey(KeyCode.RightArrow))
             {
                 buttonRight.Execute(GlobalsManager.Instance.PLAYER_RIGIDBODY, buttonRight);
+            }
+            else if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                buttonEscape.Execute(GlobalsManager.Instance.PLAYER_RIGIDBODY, buttonEscape);
             }     
         }
 

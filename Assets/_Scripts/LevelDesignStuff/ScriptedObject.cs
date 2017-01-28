@@ -22,7 +22,6 @@ namespace LevelEditor
 
         private bool playerInRange = false;
         private bool justTeleported = false;
-        private float timeSinceLastTele = 0;
 
         void Awake()
         {
@@ -53,6 +52,8 @@ namespace LevelEditor
                     if (playerInRange && this.controllable)
                     {
                         Debug.Log("You beat the level!");
+                        //eventually add an animation and stuff here and switch to the next level not just quit
+                        GlobalTriggerables.Instance.Quit();
                     }
                     break;
                 case TriggerType.FloatyAir:
