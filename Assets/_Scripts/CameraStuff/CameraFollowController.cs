@@ -25,7 +25,7 @@ public class CameraFollowController : MonoBehaviour
     //now adding a bounding box that when the player is inside the camera very slowly drifts to frontward viewing but if the player gets too far ahead the camera moves to him based on the players velocity
     void Update()
     {
-        if (!GlobalsManager.Instance.IS_GROUNDED)
+        if (!GlobalsManager.Instance.IS_GROUNDED && !GlobalsManager.Instance.PLAYER_ON_FLOATY_AIR)
         {
             GlobalsManager.Instance.CURRENT_CAMERA.fieldOfView = Mathf.Clamp(GlobalsManager.Instance.CURRENT_CAMERA.fieldOfView, 0.0f, 80f);
             GlobalsManager.Instance.CURRENT_CAMERA.fieldOfView = Mathf.Lerp(GlobalsManager.Instance.CURRENT_CAMERA.fieldOfView, GlobalsManager.Instance.CURRENT_CAMERA.fieldOfView + GlobalsManager.Instance.CAMERA_FOV_JUMP_CHANGE, GlobalsManager.Instance.CAMERA_FOV_JUMP_CHANGE / 10.0f * Time.deltaTime);

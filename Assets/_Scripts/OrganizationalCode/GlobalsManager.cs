@@ -17,6 +17,7 @@ public class GlobalsManager : Singleton<GlobalsManager>
     public bool PLAYER_FACING_RIGHT = true; // false is left, right is default
     public Material PLAYER_MATERIAL;
     public LayerMask PLAYER_LAYER;
+    public bool PLAYER_ON_FLOATY_AIR;
     //stuff for jumping
     public Vector2 PLAYER_JUMP_FORCE;
     public bool IS_GROUNDED;
@@ -32,9 +33,9 @@ public class GlobalsManager : Singleton<GlobalsManager>
     public float CAMERA_SPEEDUP_DISTANCE;
     public float CAMERA_Y_OFFSET;
     public float CAMERA_FOV_JUMP_CHANGE;
-    public bool CAMERA_HARD_MODE = false;
     //stuff for level
-    public List<ScriptedObject> TELEPORTERS;
+    public List<Transform> TELEPORTER_TRANSFORMS; //transforms so they can be selected and moved to more easily
+    public Transform TELEPORTER_MOST_RECENT;
     //public Material FLOOR_TILE_MATERIAL;
     public float FLOOR_COLOR_SWITCH_TIME;
     public float FLOOR_SWITCH_RANDOMNESS;

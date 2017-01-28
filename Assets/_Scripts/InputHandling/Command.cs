@@ -24,6 +24,9 @@ namespace CommandPattern
 
         //attack
         public virtual void AttackTarget() { }
+
+        //pause game
+        public virtual void PauseGame() { }
     }
 }
 
