@@ -23,8 +23,18 @@ namespace LevelEditor
         private bool playerInRange = false;
         private bool justTeleported = false;
 
+        void OnEnable()
+        {
+            if (!GlobalsManager.Instance.TELEPORTER_TRANSFORMS.Contains(this.transform))
+            {
+                GlobalsManager.Instance.TELEPORTER_TRANSFORMS.Add(this.transform);
+            }
+        }
+
         void Awake()
         {
+            GlobalsManager.Instance.TELEPORTER_TRANSFORMS.RemoveAll(item => item == null);
+
             if (!GlobalsManager.Instance.TELEPORTER_TRANSFORMS.Contains(this.transform))
             {
                 GlobalsManager.Instance.TELEPORTER_TRANSFORMS.Add(this.transform);

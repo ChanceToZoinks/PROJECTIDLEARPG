@@ -12,41 +12,46 @@ namespace LevelEditor
 
         public List<GameObject> valForPrefabHolder;
         public Transform valForLevelPieceParent;
+        public Transform valForTeleParent;
 
-        public enum BlockType { Block, Trigger }
+        public enum BlockType { Block, Trigger, Teleporter }
         public BlockType type;
 
         public bool valForBlockOne;
         public float valForCameraDepth;
 
-        private Ray ray;
-        private RaycastHit hit;
+        public bool valForEditingWorld;
 
-        void Awake()
+        public void PlaceBlock(BlockType _type)
         {
-            ray = new Ray();
-            hit = new RaycastHit();
-        }
-
-        void Update()
-        {
-            ray = Camera.current.ScreenPointToRay(new Vector3(Camera.current.transform.position.x, Camera.current.transform.position.y, valForCameraDepth));
-            if (Input.GetKeyUp(KeyCode.Mouse0))
-            {
-                PlaceBlock(type);
-            }
-        }
-
-        private void PlaceBlock(BlockType _type)
-        {
-            switch(_type)
+            //TODO: add raycasting so objects get placed at mouse position. also deleting/undo
+            Debug.Log("Block Placed" + _type);
+            GameObject obj;
+            switch (_type)
             {
                 case BlockType.Block:
-                    GameObject go = PrefabUtility.InstantiatePrefab(valForPrefabHolder[0]) as GameObject;
-                    go.transform.position = ray.GetPoint(valForCameraDepth);
+                    obj = Instantiate(valForPrefabHolder[0], new Vector3(0, 0, valForCameraDepth), Quaternion.identity, valForLevelPieceParent)  as GameObject;
+                    if (!GlobalsManager.Instance.TELEPORTER_TRANSFORMS.Contains(obj.transform))
+                    {
+                        GlobalsManager.Instance.TELEPORTER_TRANSFORMS.Add(obj.transform);
+                    }
+
+                    break;
+                case BlockType.Teleporter:
+                    obj = Instantiate(valForPrefabHolder[1], new Vector3(0, 0, valForCameraDepth), Quaternion.identity, valForTeleParent) as GameObject;
+                    if (!GlobalsManager.Instance.TELEPORTER_TRANSFORMS.Contains(obj.transform))
+                    {
+                        GlobalsManager.Instance.TELEPORTER_TRANSFORMS.Add(obj.transform);
+                    }
+
                     break;
                 case BlockType.Trigger:
-                    Instantiate(valForPrefabHolder[1]);
+                    obj = Instantiate(valForPrefabHolder[2], new Vector3(0, 0, valForCameraDepth), Quaternion.identity, valForLevelPieceParent) as GameObject;
+                    if (!GlobalsManager.Instance.TELEPORTER_TRANSFORMS.Contains(obj.transform))
+                    {
+                        GlobalsManager.Instance.TELEPORTER_TRANSFORMS.Add(obj.transform);
+                    }
+
                     break;
             }
         }

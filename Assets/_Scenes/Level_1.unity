@@ -16950,9 +16950,11 @@ MonoBehaviour:
   - {fileID: 1710553111846804, guid: 8f07cab3cca76d44c82abbbd5353797c, type: 2}
   - {fileID: 1917992673283436, guid: 69eef37804b5cd2488ed503651f38ff7, type: 2}
   valForLevelPieceParent: {fileID: 113720475}
-  type: 0
+  valForTeleParent: {fileID: 300524518}
+  type: 2
   valForBlockOne: 0
   valForCameraDepth: 0.53
+  valForEditingWorld: 0
 --- !u!1 &423517241
 GameObject:
   m_ObjectHideFlags: 0
@@ -69719,7 +69721,7 @@ Prefab:
     - target: {fileID: 114869115068916492, guid: 854a0551e1e21284981ab429272c5990,
         type: 2}
       propertyPath: TELEPORTER_TRANSFORMS.Array.size
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4996427380507454, guid: 854a0551e1e21284981ab429272c5990, type: 2}
       propertyPath: m_LocalPosition.x
@@ -69812,6 +69814,26 @@ Prefab:
         type: 2}
       propertyPath: _buttonEscape
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114869115068916492, guid: 854a0551e1e21284981ab429272c5990,
+        type: 2}
+      propertyPath: TELEPORTER_TRANSFORMS.Array.data[10]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114869115068916492, guid: 854a0551e1e21284981ab429272c5990,
+        type: 2}
+      propertyPath: GROUND_COLOR_RANDOMNESS
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114869115068916492, guid: 854a0551e1e21284981ab429272c5990,
+        type: 2}
+      propertyPath: TELEPORTER_TRANSFORMS.Array.data[8]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114869115068916492, guid: 854a0551e1e21284981ab429272c5990,
+        type: 2}
+      propertyPath: TELEPORTER_TRANSFORMS.Array.data[9]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 854a0551e1e21284981ab429272c5990, type: 2}
