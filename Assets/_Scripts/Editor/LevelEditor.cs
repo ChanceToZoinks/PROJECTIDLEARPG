@@ -32,6 +32,15 @@ namespace LevelEditor.Editors
             SceneView.onSceneGUIDelegate = EventUpdate;
         }
 
+        TilePainter tilePainter;
+
+        //raycasts for determining where to place blocks in the scene. pass the value into TilePainter.PlaceBlock()
+        Ray ray;
+        RaycastHit hit;
+        //pass this point in
+        Vector3 point;
+        Vector3 placementPoint;
+
         //this is basically update but for the custom editor. put looping stuff in here.
         void OnSceneGUI()
         {
@@ -51,14 +60,21 @@ namespace LevelEditor.Editors
                 return;
             }
 
+            //
+            //TODO: THIS STILL NEEDS FIXED
+            //
+            
+            ray = Camera.current.ScreenPointToRay(new Vector3(Event.current.mousePosition.x, EditorWindow.mouseOverWindow.position.height - Event.current.mousePosition.y, 0.0f));
+            //the Screen.height - mouseposition.y is because the position of all the objects is off by a small amount
+            point = new Vector3(ray.GetPoint(tilePainter.valForCameraDepth).x, EditorWindow.mouseOverWindow.position.height - ray.GetPoint(tilePainter.valForCameraDepth).y, tilePainter.valForCameraDepth);
             //put other hotkeys and shit here. probably write an input handler? maybe just extend the existing InputHandler?
             if (Event.current.type == EventType.mouseDown)
             {
-                tilePainter.PlaceBlock(tilePainter.type);
+                tilePainter.PlaceBlock(tilePainter.type, point);
             }
         }
 
-        TilePainter tilePainter;
+
 
         public override void OnInspectorGUI()
         {

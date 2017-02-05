@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace LevelEditor
 {
+    //this has to execute in edit mode so it doesn't lose references to GlobalsManager
     [ExecuteInEditMode]
     public class TilePainter : MonoBehaviour
     {
@@ -22,7 +23,7 @@ namespace LevelEditor
 
         public bool valForEditingWorld;
 
-        public void PlaceBlock(BlockType _type)
+        public void PlaceBlock(BlockType _type, Vector3 _placementLocation)
         {
             //TODO: add raycasting so objects get placed at mouse position. also deleting/undo
             Debug.Log("Block Placed" + _type);
@@ -30,7 +31,7 @@ namespace LevelEditor
             switch (_type)
             {
                 case BlockType.Block:
-                    obj = Instantiate(valForPrefabHolder[0], new Vector3(0, 0, valForCameraDepth), Quaternion.identity, valForLevelPieceParent)  as GameObject;
+                    obj = Instantiate(valForPrefabHolder[0], _placementLocation, Quaternion.identity, valForLevelPieceParent)  as GameObject;
                     if (!GlobalsManager.Instance.TELEPORTER_TRANSFORMS.Contains(obj.transform))
                     {
                         GlobalsManager.Instance.TELEPORTER_TRANSFORMS.Add(obj.transform);
@@ -38,7 +39,7 @@ namespace LevelEditor
 
                     break;
                 case BlockType.Teleporter:
-                    obj = Instantiate(valForPrefabHolder[1], new Vector3(0, 0, valForCameraDepth), Quaternion.identity, valForTeleParent) as GameObject;
+                    obj = Instantiate(valForPrefabHolder[1], _placementLocation, Quaternion.identity, valForTeleParent) as GameObject;
                     if (!GlobalsManager.Instance.TELEPORTER_TRANSFORMS.Contains(obj.transform))
                     {
                         GlobalsManager.Instance.TELEPORTER_TRANSFORMS.Add(obj.transform);
@@ -46,7 +47,7 @@ namespace LevelEditor
 
                     break;
                 case BlockType.Trigger:
-                    obj = Instantiate(valForPrefabHolder[2], new Vector3(0, 0, valForCameraDepth), Quaternion.identity, valForLevelPieceParent) as GameObject;
+                    obj = Instantiate(valForPrefabHolder[2], _placementLocation, Quaternion.identity, valForLevelPieceParent) as GameObject;
                     if (!GlobalsManager.Instance.TELEPORTER_TRANSFORMS.Contains(obj.transform))
                     {
                         GlobalsManager.Instance.TELEPORTER_TRANSFORMS.Add(obj.transform);

@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 114314324310651712}
   - component: {fileID: 114993660459871652}
   - component: {fileID: 114002531011712990}
+  - component: {fileID: 114011413534663420}
+  - component: {fileID: 114334599336898418}
   m_Layer: 0
   m_Name: _Controllers
   m_TagString: Untagged
@@ -56,6 +58,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f590fc0972e1ba34faee7238e5445253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114011413534663420
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1193033950813634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d078f7d08d56ad4b9bd6c4b2e64ef17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menu: {fileID: 0}
 --- !u!114 &114314324310651712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,6 +81,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79baf766ac815148a500d98d84bf48b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114334599336898418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1193033950813634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f0653343d132145b285183f8b458f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  valForPrefabHolder:
+  - {fileID: 1858532020777172, guid: 849ce562924f71c49856aeb4cc3220b3, type: 2}
+  - {fileID: 1710553111846804, guid: 88f9c4d824aedf24395ade98a2fa15b1, type: 2}
+  - {fileID: 1710553111846804, guid: 8f07cab3cca76d44c82abbbd5353797c, type: 2}
+  - {fileID: 1917992673283436, guid: 69eef37804b5cd2488ed503651f38ff7, type: 2}
+  valForLevelPieceParent: {fileID: 0}
+  valForTeleParent: {fileID: 0}
+  type: 2
+  valForBlockOne: 0
+  valForCameraDepth: 0.53
+  valForEditingWorld: 0
 --- !u!114 &114382522768610148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -82,6 +118,7 @@ MonoBehaviour:
   _buttonRight: 1
   _buttonA: 3
   _buttonSpace: 2
+  _buttonEscape: 4
 --- !u!114 &114504582582175534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -130,7 +167,9 @@ MonoBehaviour:
   CAMERA_SPEEDUP_DISTANCE: 4
   CAMERA_Y_OFFSET: 1.5
   CAMERA_FOV_JUMP_CHANGE: 10
-  TELEPORTER_TRANSFORMS: []
+  TELEPORTER_TRANSFORMS:
+  - {fileID: 0}
+  - {fileID: 0}
   TELEPORTER_MOST_RECENT: {fileID: 0}
   FLOOR_COLOR_SWITCH_TIME: 0.54
   FLOOR_SWITCH_RANDOMNESS: 0.3
