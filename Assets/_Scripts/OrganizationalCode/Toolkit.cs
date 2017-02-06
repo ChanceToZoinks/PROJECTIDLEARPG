@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Toolkit : Singleton<Toolkit> {
+public class Toolkit : Singleton<Toolkit>
+{
 
     //this class holds various methods and functions i thought i might use, need to focus on trimming waste
 	protected Toolkit() { }
