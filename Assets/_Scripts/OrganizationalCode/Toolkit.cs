@@ -15,8 +15,7 @@ public class Toolkit : Singleton<Toolkit>
 
     public float RandomSinValue()
     {
-        float randomSinValue = Mathf.Sin(Random.Range(0.0f, Mathf.PI * 2.0f));
-        return randomSinValue;
+        return Mathf.Sin(Random.Range(0.0f, Mathf.PI * 2.0f));
     }
 
     public void AddForceAsFunctionOfVelocity(Rigidbody2D playerRigidbody)
