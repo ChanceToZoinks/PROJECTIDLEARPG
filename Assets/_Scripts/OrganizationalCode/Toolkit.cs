@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Toolkit : Singleton<Toolkit> {
+public class Toolkit : Singleton<Toolkit>
+{
 
     //this class holds various methods and functions i thought i might use, need to focus on trimming waste
 	protected Toolkit() { }
@@ -14,8 +15,7 @@ public class Toolkit : Singleton<Toolkit> {
 
     public float RandomSinValue()
     {
-        float randomSinValue = Mathf.Sin(Random.Range(0.0f, Mathf.PI * 2.0f));
-        return randomSinValue;
+        return Mathf.Sin(Random.Range(0.0f, Mathf.PI * 2.0f));
     }
 
     public void AddForceAsFunctionOfVelocity(Rigidbody2D playerRigidbody)
